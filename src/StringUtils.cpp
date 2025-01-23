@@ -13,8 +13,10 @@ std::string Capitalize(const std::string &str) noexcept{
 }
 
 std::string Upper(const std::string &str) noexcept{
-    // Replace code here
-    return "";
+    std::string output = str;
+    for (size_t i = 0; i < output.size(); i++){
+        output[i] = std::toupper()
+    }
 }
 
 std::string Lower(const std::string &str) noexcept{
