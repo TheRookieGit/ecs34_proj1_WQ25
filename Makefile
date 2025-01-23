@@ -7,18 +7,13 @@ include_folder = include
 src_folder = src
 test_folder = testsrc
 
+obj_folder = obj
+bin_folder = bin
+#??
 
-# ● Must create obj directory for object files (if doesn’t exist)
-obj_folder = obj #mkdir
-
-
-# ● Must create bin directory for binary files (if doesn’t exist)
-bin_folder = bin #mkdir
-
-include_folder = $(wildcard $(include_folder)/*.h)
+#includes = $(wildcard $(include_folder)/*.h)
 srcs = $(wildcard $(src_folder)/*.cpp)
 testsrc = $(wildcard $(test_folder)/*.cpp)
-
 # ● Must compile string utils file and string utils tests using C++17
 objs = $(patsubst $(src_folder)/%.cpp, $(obj_folder)/%.o, $(srcs))
 testobjs = $(patsubst $(test_folder)/%.cpp, $(obj_folder)/%.o, $(testsrc))
@@ -29,6 +24,7 @@ all_object = $(objs) $(testobjs)
 # executable
 
 default: test
+
 $(execute_target): $(objs) $(testobjs)
 	@mkdir -p $(bin_folder)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
