@@ -27,27 +27,27 @@ execute_target = $(bin_folder)/teststrutils
 all_object = $(objs) $(testobjs)
 # ● Must link string utils and string utils tests object files to make teststrutils
 # executable
-$(execute_target): $(obj_folder) $(test_obj)
-	@mkdir -p $(bin_folder)
-	$(CXX) $(CXXFLAGS) -o $@ $(all_object) $(LDFLAGS)
-
-
-$(obj_folder): $(src_folder)/%.cpp
-	@mkdir -p $(obj_folder)
-	$(CXX) $(CXXFLAGS) -c $(src_folder)/$*.cpp -o $(obj_folder)/$*.o
-
-$(obj_folder): $(test_folder)/%.cpp
-	@mkdir -p $(obj_folder)
-	$(CXX) $(CXXFLAGS) -c $(test_folder)/$*.cpp -o $(obj_folder)/$*.o
-
 
 default: test
+$(execute_target): $(objs) $(testobjs)
+	@mkdir -p $(bin_folder)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(obj_folder)/%.o: $(src_folder)/%.cpp
+	@mkdir -p $(obj_folder)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(obj_folder)/%.o: $(test_folder)/%.cpp
+	@mkdir -p $(obj_folder)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# default: test
 # ● Must execute the teststrutils executable
 test: $(execute_target)
 	./$(execute_target)
 
 # ● Must provide a clean that will remove the obj and bin directories
 clean:
-	rm -rt $(obj_folder) $(bin_folder)
+	rm -rf $(obj_folder) $(bin_folder)
 
 .PHONY: all test clean
