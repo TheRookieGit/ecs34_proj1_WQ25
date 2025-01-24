@@ -40,6 +40,13 @@ std::string Slice(const std::string &str, ssize_t start, ssize_t end) noexcept{
 
 std::string Capitalize(const std::string &str) noexcept{
     if (str.empty()) return str;
+    std::string output = str;
+    for (char& lowercase_char: output){
+        lowercase_char = std::tolower(lowercase_char);
+    }
+    output[0] = std::toupper(output[0]);
+
+    return output;
 }
 
 std::string Upper(const std::string &str) noexcept{
@@ -59,18 +66,38 @@ std::string Lower(const std::string &str) noexcept{
 }
 
 std::string LStrip(const std::string &str) noexcept{
-    // Replace code here
-    return "";
+    size_t start = 0;
+
+    while (start < str.length() && std::isspace(static_cast<unsigned char>(str[start]))){
+        start ++;
+    }
+
+    if (start == str.length()){
+        return "";
+    } else {
+        return str.substr(start);
+    }
+
 }
 
 std::string RStrip(const std::string &str) noexcept{
-    // Replace code here
-    return "";
+    size_t start = 0;
+    size_t end = str.length();
+
+    while (end > 0 && std::isspace(static_cast<unsigned char>(str[end - 1]))){
+        end --;
+    }
+
+    if (start == str.length()){
+        return "";
+    } else {
+        return str.substr(0, end);
+    }
 }
 
 std::string Strip(const std::string &str) noexcept{
-    // Replace code here
-    return "";
+    return LStrip(RStrip(str));
+
 }
 
 std::string Center(const std::string &str, int width, char fill) noexcept{
@@ -79,8 +106,7 @@ std::string Center(const std::string &str, int width, char fill) noexcept{
 }
 
 std::string LJust(const std::string &str, int width, char fill) noexcept{
-    // Replace code here
-    return "";
+    if （str.length()
 }
 
 std::string RJust(const std::string &str, int width, char fill) noexcept{

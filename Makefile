@@ -40,7 +40,7 @@ $(obj_folder)/%.o: $(test_folder)/%.cpp
 # default: test
 # ● Must execute the teststrutils executable
 test: $(execute_target)
-	./$(execute_target) || true
+			./$(execute_target) --gtest_break_on_failure=0
 # ● Must provide a clean that will remove the obj and bin directories
 clean:
 	rm -rf $(obj_folder) $(bin_folder)
