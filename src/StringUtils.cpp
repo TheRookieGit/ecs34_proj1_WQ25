@@ -1,5 +1,36 @@
 #include "StringUtils.h"
 
+// [ RUN      ] StringUtilsTest.SliceTest
+// [       OK ] StringUtilsTest.SliceTest (0 ms)
+// [ RUN      ] StringUtilsTest.Capitalize
+// [       OK ] StringUtilsTest.Capitalize (0 ms)
+// [ RUN      ] StringUtilsTest.Upper
+// [       OK ] StringUtilsTest.Upper (0 ms)
+// [ RUN      ] StringUtilsTest.Lower
+// [       OK ] StringUtilsTest.Lower (0 ms)
+// [ RUN      ] StringUtilsTest.LStrip
+// [       OK ] StringUtilsTest.LStrip (0 ms)
+// [ RUN      ] StringUtilsTest.RStrip
+// [       OK ] StringUtilsTest.RStrip (0 ms)
+// [ RUN      ] StringUtilsTest.Strip
+// [       OK ] StringUtilsTest.Strip (0 ms)
+// [ RUN      ] StringUtilsTest.Center
+// [       OK ] StringUtilsTest.Center (0 ms)
+// [ RUN      ] StringUtilsTest.LJust
+// [       OK ] StringUtilsTest.LJust (0 ms)
+// [ RUN      ] StringUtilsTest.RJust
+// [       OK ] StringUtilsTest.RJust (0 ms)
+// [ RUN      ] StringUtilsTest.Replace
+// [       OK ] StringUtilsTest.Replace (0 ms)
+// [ RUN      ] StringUtilsTest.Split
+// [       OK ] StringUtilsTest.Split (0 ms)
+// [ RUN      ] StringUtilsTest.Join
+// [       OK ] StringUtilsTest.Join (0 ms)
+// [ RUN      ] StringUtilsTest.ExpandTabs
+// [       OK ] StringUtilsTest.ExpandTabs (0 ms)
+// [ RUN      ] StringUtilsTest.EditDistance
+// [       OK ] StringUtilsTest.EditDistance (0 ms)
+
 namespace StringUtils{
 
 std::string Slice(const std::string &str, ssize_t start, ssize_t end) noexcept{
@@ -8,20 +39,23 @@ std::string Slice(const std::string &str, ssize_t start, ssize_t end) noexcept{
 }
 
 std::string Capitalize(const std::string &str) noexcept{
-    // Replace code here
-    return "";
+    if (str.empty()) return str;
 }
 
 std::string Upper(const std::string &str) noexcept{
     std::string output = str;
     for (size_t i = 0; i < output.size(); i++){
-        output[i] = std::toupper()
+        output[i] = std::toupper(static_cast<unsigned char>(output[i]));
     }
+    return output;
 }
 
 std::string Lower(const std::string &str) noexcept{
-    // Replace code here
-    return "";
+    std::string output = str;
+    for (size_t i = 0; i < output.size(); i++){
+        output[i] = std::tolower(static_cast<unsigned char>(output[i]));
+    }
+    return output;
 }
 
 std::string LStrip(const std::string &str) noexcept{
