@@ -106,12 +106,31 @@ std::string Center(const std::string &str, int width, char fill) noexcept{
 }
 
 std::string LJust(const std::string &str, int width, char fill) noexcept{
-    if （str.length()
+    if (str.length() >= width){
+        return str;
+    }
+
+    int adding_size = width - str.length();
+    std::string adding_char = "";
+    for (int i = 0; i < adding_size; i++){
+        adding_char += fill;
+    }
+
+    return str + adding_char;
 }
 
 std::string RJust(const std::string &str, int width, char fill) noexcept{
-    // Replace code here
-    return "";
+        if (str.length() >= width){
+        return str;
+    }
+
+    int adding_size = width - str.length();
+    std::string adding_char = "";
+    for (int i = 0; i < adding_size; i++){
+        adding_char += fill;
+    }
+
+    return adding_char + str;
 }
 
 std::string Replace(const std::string &str, const std::string &old, const std::string &rep) noexcept{
