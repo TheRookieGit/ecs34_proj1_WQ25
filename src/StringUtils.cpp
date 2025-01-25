@@ -197,8 +197,16 @@ std::vector< std::string > Split(const std::string &str, const std::string &splt
 }
 
 std::string Join(const std::string &str, const std::vector< std::string > &vect) noexcept{
-    // Replace code here
-    return "";
+    if (vect.empty()) return "";
+
+    std::string output = vect[0];
+    
+    for (size_t i = 1; i < vect.size(); i++){
+        output += str;
+        output += vect[i];
+    }
+
+    return output;
 }
 
 std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
