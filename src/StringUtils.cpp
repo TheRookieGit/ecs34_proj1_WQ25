@@ -34,8 +34,37 @@
 namespace StringUtils{
 
 std::string Slice(const std::string &str, ssize_t start, ssize_t end) noexcept{
-    // Replace code here
-    return "";
+    if (str.empty()) return str;
+
+    ssize_t length = static_cast<ssize_t>(str.length());
+
+    if (start < 0){
+        start += length;
+        if (start < 0){
+            start = 0;
+        }
+    }
+
+    if (end < 0){
+        end += length;
+        if (end < 0){
+            end = 0;
+        }
+    }
+
+    if (start > length){
+        start = length;
+    }
+
+    if (end > length || end == 0){
+        end = length;
+    }
+
+    if (start >= end){
+        return std::string();
+    }
+
+    return str.substr(start, end - start);
 }
 
 std::string Capitalize(const std::string &str) noexcept{
@@ -101,8 +130,18 @@ std::string Strip(const std::string &str) noexcept{
 }
 
 std::string Center(const std::string &str, int width, char fill) noexcept{
-    // Replace code here
-    return "";
+    if (str.length() >= width){
+        return str;
+    }
+
+    int fill_size = width - str.length();
+
+    int left_fill = (fill_size) / 2;
+    int right_fill = (fill_size + 1) / 2;
+
+    return std::string(left_fill, fill) + str + std::string(right_fill, fill);
+
+
 }
 
 std::string LJust(const std::string &str, int width, char fill) noexcept{
@@ -134,8 +173,22 @@ std::string RJust(const std::string &str, int width, char fill) noexcept{
 }
 
 std::string Replace(const std::string &str, const std::string &old, const std::string &rep) noexcept{
-    // Replace code here
-    return "";
+    if (old.empty()) return str;
+
+    std::string output = "";
+    size_t start = 0;
+    size_t find_old = str.find(old, start);  
+
+    while (find_old != -1){
+        output += str.substr(start, find_old - start);
+        output += rep;
+        start = find_old + old.length();
+        find_old = str.find(old, start);
+    }  
+
+    output += str.substr(start);
+
+    return output;
 }
 
 std::vector< std::string > Split(const std::string &str, const std::string &splt) noexcept{

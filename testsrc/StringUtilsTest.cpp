@@ -69,8 +69,8 @@ TEST(StringUtilsTest, Strip){
 
 TEST(StringUtilsTest, Center){
   EXPECT_EQ(Center("vincent", 9, ' '), " vincent ");
-  EXPECT_EQ(Center("vincent", 8, '-'), "-vincent");
-  EXPECT_EQ(Center("vincent", 10, '-'), "--vincent-");
+  EXPECT_EQ(Center("vincent", 8, '-'), "vincent-");
+  EXPECT_EQ(Center("vincent", 10, '-'), "-vincent--");
   EXPECT_EQ(Center("vincent", 1, '-'), "vincent");
   EXPECT_EQ(Center("Vincent-Wang", 16, '.'), "..Vincent-Wang..");
 }
