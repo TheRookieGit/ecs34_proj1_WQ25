@@ -6,5 +6,6 @@ https://cplusplus.com/reference/cctype/toupper/
 https://www.geeksforgeeks.org/unsigned-char-in-c-with-examples/
 https://www.geeksforgeeks.org/static_cast-in-cpp/
 https://stackoverflow.com/questions/59813602/how-can-i-use-the-toupper-or-tolower-function-on-a-string-array
+https://gist.github.com/wuflower/fcb3e7018d1162d3cce09f4a8016664b
 
-Referenced my own work from last year: only to draw inspiration of test examples, did not copy them
+Referenced my own work from last year: only to draw inspiration of test examples(stringutiltest.cpp), did not copy them
