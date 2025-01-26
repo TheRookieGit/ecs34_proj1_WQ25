@@ -1,6 +1,11 @@
 #include "StringUtils.h"
 
-#include <vector> //for EditDistance
+//for EditDistance:
+#include <vector> 
+using std::vector;
+#include <algorithm>
+using std::min;
+
 // [ RUN      ] StringUtilsTest.SliceTest
 // [       OK ] StringUtilsTest.SliceTest (0 ms)
 // [ RUN      ] StringUtilsTest.Capitalize
@@ -193,8 +198,7 @@ std::string Replace(const std::string &str, const std::string &old, const std::s
 }
 
 std::vector< std::string > Split(const std::string &str, const std::string &splt) noexcept{
-    // Replace code here
-    return {};
+    
 }
 
 std::string Join(const std::string &str, const std::vector< std::string > &vect) noexcept{
@@ -239,14 +243,14 @@ int EditDistance(const std::string &left, const std::string &right, bool ignorec
         table[0][j] = j;
     }
 
-    for (int i = 1; i <= left_size; i++){
-        for(int j = 1; j <= right_size; j++){
+    for (size_t i = 1; i <= left_size; i++){
+        for(size_t j = 1; j <= right_size; j++){
             if(left[i-1] == right[j-1]){
                 table[i][j] = table[i - 1][j - 1];
 
             }
             else{
-                table[i][j] = min({table[i][j], table[i-1][j],table[i][j-1]}) + 1;
+                table[i][j] = min({table[i-1][j-1], table[i-1][j],table[i][j-1]}) + 1;
             }
         }
     }
