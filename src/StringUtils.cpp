@@ -200,6 +200,16 @@ std::string Replace(const std::string &str, const std::string &old, const std::s
 std::vector< std::string > Split(const std::string &str, const std::string &splt) noexcept{
     std::vector<std::string> output;
 
+    // if (str.empty() && !splt.empty()){
+    //     output.push_back("");
+
+    // }
+    if (str.empty()){
+        output.push_back("");
+
+    }
+
+
     if (splt.empty()){
         std::string temp_output;
         for (char char_now: str){
@@ -208,9 +218,9 @@ std::vector< std::string > Split(const std::string &str, const std::string &splt
                     output.push_back(temp_output);
                     temp_output.clear();
                 }
-            }else(
+            }else{
                 temp_output += char_now;
-            )
+            }
         }
         if (!temp_output.empty()){ //adding last part after split "splt"
             output.push_back(temp_output);
@@ -228,13 +238,15 @@ std::vector< std::string > Split(const std::string &str, const std::string &splt
                 i += split_length - 1;
             }
 
-        if (!temp_output.empty()){ //adding last part after split "splt"
+    }
+        //if (!temp_output.empty()){ //adding last part after split "splt"
+        if (current_position < str.length()){
                     output.push_back(str.substr(current_position));
                 }
         }
 
 
-    }
+    
 
     return output;
 }

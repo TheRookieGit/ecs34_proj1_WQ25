@@ -106,6 +106,10 @@ TEST(StringUtilsTest, Split){ //std::vector<std::string>
   EXPECT_EQ(Split("", ","), (std::vector<std::string>{""}));
   EXPECT_EQ(Split("Wang,Vincent,Wang", ","), (std::vector<std::string>{"Wang", "Vincent", "Wang"}));
   EXPECT_EQ(Split("Vincent.Wang.Vincent", "."), (std::vector<std::string>{"Vincent", "Wang", "Vincent"}));
+  EXPECT_EQ(Split("vincent,wang", ""), (std::vector<std::string>{"vincent,wang"}));
+  EXPECT_EQ(Split("", ""), (std::vector<std::string>{""}));
+
+
 }
 
 
