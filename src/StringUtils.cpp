@@ -201,8 +201,38 @@ std::vector< std::string > Split(const std::string &str, const std::string &splt
     std::vector<std::string> output;
 
     if (splt.empty()){
+        std::string temp_output;
+        for (char char_now: str){
+            if (char_now ==' '){
+                if (!temp_output.empty()){
+                    output.push_back(temp_output);
+                    temp_output.clear();
+                }
+            }else(
+                temp_output += char_now;
+            )
+        }
+        if (!temp_output.empty()){ //adding last part after split "splt"
+            output.push_back(temp_output);
+        }
+
 
     } else {
+        size_t current_position = 0;
+        size_t split_length = splt.length();
+
+        for (size_t i = 0; i < str.length(); i++){
+            if (str.substr(i, split_length) == splt){
+                output.push_back(str.substr(current_position, i - current_position));
+                current_position = i + split_length;
+                i += split_length - 1;
+            }
+
+        if (!temp_output.empty()){ //adding last part after split "splt"
+                    output.push_back(str.substr(current_position));
+                }
+        }
+
 
     }
 
