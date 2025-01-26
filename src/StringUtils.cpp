@@ -1,5 +1,6 @@
 #include "StringUtils.h"
 
+#include <vector> //for EditDistance
 // [ RUN      ] StringUtilsTest.SliceTest
 // [       OK ] StringUtilsTest.SliceTest (0 ms)
 // [ RUN      ] StringUtilsTest.Capitalize
@@ -210,13 +211,47 @@ std::string Join(const std::string &str, const std::vector< std::string > &vect)
 }
 
 std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
-    // Replace code here
-    return "";
+    if (str.empty()) return "";
+
+    std::string output = "";
+
+    for (size_t i = 0; i < str.size(); i++){
+        char character = str[i];
+
+        if (character == '\t'){
+            output += std::string(tabsize, ' ');
+        } else {
+            output += character;
+        }
+
+    }
+    return output;
 }
 
 int EditDistance(const std::string &left, const std::string &right, bool ignorecase) noexcept{
-    // Replace code here
-    return 0;
+    size_t left_size = left.size(), right_size = right.size();
+    vector<vector<size_t>> table (left_size + 1, vector<size_t>(right_size + 1));
+
+    for (size_t i = 0; i <= left_size; i++){
+        table[i][0] = i;
+    }
+    for (size_t j = 0; j <= right_size; j++){
+        table[0][j] = j;
+    }
+
+    for (int i = 1; i <= left_size; i++){
+        for(int j = 1; j <= right_size; j++){
+            if(left[i-1] == right[j-1]){
+                table[i][j] = table[i - 1][j - 1];
+
+            }
+            else{
+                table[i][j] = min({table[i][j], table[i-1][j],table[i][j-1]}) + 1;
+            }
+        }
+    }
+    return table[left_size][right_size];
+
 }
 
 };
