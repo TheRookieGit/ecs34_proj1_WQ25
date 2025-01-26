@@ -198,7 +198,15 @@ std::string Replace(const std::string &str, const std::string &old, const std::s
 }
 
 std::vector< std::string > Split(const std::string &str, const std::string &splt) noexcept{
-    
+    std::vector<std::string> output;
+
+    if (splt.empty()){
+
+    } else {
+
+    }
+
+    return output;
 }
 
 std::string Join(const std::string &str, const std::vector< std::string > &vect) noexcept{
