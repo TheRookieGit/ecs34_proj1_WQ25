@@ -268,14 +268,22 @@ std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
     if (str.empty()) return "";
 
     std::string output = "";
+    size_t new_position = 0;
+
 
     for (size_t i = 0; i < str.size(); i++){
         char character = str[i];
 
         if (character == '\t'){
-            output += std::string(tabsize, ' ');
-        } else {
+            int new_tabsize = tabsize - (new_position%tabsize);
+            output += std::string(new_tabsize, ' ');
+            new_position += new_tabsize;
+        } else if (character == '\n'{
             output += character;
+            new_position = 0;
+        } else{
+            output += character;
+            new_position++;
         }
 
     }
@@ -295,6 +303,15 @@ int EditDistance(const std::string &left, const std::string &right, bool ignorec
 
     for (size_t i = 1; i <= left_size; i++){
         for(size_t j = 1; j <= right_size; j++){
+            char left_case = left[i-1];
+            char right_case = right[j-1];
+
+            if (ignorecase){
+                left_case = std::tolower(static_cast<unsigned_char>(left_case);
+                right_case = std::tolower(static_cast<unsigned_char>(right_case);
+            }
+
+
             if(left[i-1] == right[j-1]){
                 table[i][j] = table[i - 1][j - 1];
 
