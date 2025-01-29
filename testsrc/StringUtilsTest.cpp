@@ -123,9 +123,10 @@ TEST(StringUtilsTest, Join){ //std::vector<std::string>
 
 TEST(StringUtilsTest, ExpandTabs){
   EXPECT_EQ(ExpandTabs("\tvincent", 3), "   vincent");
-  EXPECT_EQ(ExpandTabs("vincent\twang", 3), "vincent   wang");
+  EXPECT_EQ(ExpandTabs("vincent\twang", 3), "vincent  wang");
   EXPECT_EQ(ExpandTabs("Vincent\tWang", 0), "VincentWang");
   EXPECT_EQ(ExpandTabs("\t", 0), "");
+  EXPECT_EQ(ExpandTabs("\t12341241", 3), "   12341241");
   
 }
 

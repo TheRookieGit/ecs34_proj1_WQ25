@@ -6,6 +6,10 @@ using std::vector;
 #include <algorithm>
 using std::min;
 
+//for Split:
+#include <string>
+#include <cctype>
+
 // [ RUN      ] StringUtilsTest.SliceTest
 // [       OK ] StringUtilsTest.SliceTest (0 ms)
 // [ RUN      ] StringUtilsTest.Capitalize
@@ -212,14 +216,17 @@ std::vector< std::string > Split(const std::string &str, const std::string &splt
 
     if (splt.empty()){
         std::string temp_output;
-        for (char char_now: str){
-            if (char_now ==' '){
+        // for (char char_now: str){
+        //     if (char_now ==' '){
+
+        for (size_t i =0; i < str.length(); i++){
+            if (std::isspace(static_cast<unsigned char>(str[i]))){
                 if (!temp_output.empty()){
                     output.push_back(temp_output);
                     temp_output.clear();
                 }
             }else{
-                temp_output += char_now;
+                temp_output += str[i];
             }
         }
         if (!temp_output.empty()){ //adding last part after split "splt"
@@ -267,7 +274,13 @@ std::string Join(const std::string &str, const std::vector< std::string > &vect)
 std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
     if (str.empty()) return "";
 
-    std::string output = "";
+    //if(tabsize == 0) return str;
+
+    if (tabsize < 0) return str; 
+
+
+
+    std::string output;
     size_t new_position = 0;
 
 
@@ -278,10 +291,7 @@ std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
             int new_tabsize = tabsize - (new_position%tabsize);
             output += std::string(new_tabsize, ' ');
             new_position += new_tabsize;
-        } else if (character == '\n') {
-            output += character;
-            new_position = 0;
-        } else{
+        } else {
             output += character;
             new_position++;
         }
@@ -307,12 +317,13 @@ int EditDistance(const std::string &left, const std::string &right, bool ignorec
             char right_case = right[j-1];
 
             if (ignorecase){
-                left_case = std::tolower(static_cast<unsigned char>(left_case);
-                right_case = std::tolower(static_cast<unsigned char>(right_case);
+                left_case = std::tolower(static_cast<unsigned char>(left_case));
+                right_case = std::tolower(static_cast<unsigned char>(right_case));
             }
 
 
-            if(left[i-1] == right[j-1]){
+            //if(left[i-1] == right[j-1]){
+            if(left_case == right_case){
                 table[i][j] = table[i - 1][j - 1];
 
             }
