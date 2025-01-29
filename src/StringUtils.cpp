@@ -278,7 +278,7 @@ std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
             int new_tabsize = tabsize - (new_position%tabsize);
             output += std::string(new_tabsize, ' ');
             new_position += new_tabsize;
-        } else if (character == '\n'{
+        } else if (character == '\n') {
             output += character;
             new_position = 0;
         } else{
@@ -307,8 +307,8 @@ int EditDistance(const std::string &left, const std::string &right, bool ignorec
             char right_case = right[j-1];
 
             if (ignorecase){
-                left_case = std::tolower(static_cast<unsigned_char>(left_case);
-                right_case = std::tolower(static_cast<unsigned_char>(right_case);
+                left_case = std::tolower(static_cast<unsigned char>(left_case);
+                right_case = std::tolower(static_cast<unsigned char>(right_case);
             }
 
 
